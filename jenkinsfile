@@ -1,26 +1,21 @@
 pipeline {
-    	agent any
-	triggers{
-		PullSCM("*****")
-	}
-	
-
-
-    	stages {
-        	stage('Build') {
-            	steps {
-               	 echo 'Building..'
-            	}
-       	 }
-        	stage('Test') {
-            	steps {
-                		echo 'Testing..'
-            	}
-        	}
-        	stage('Deploy') {
-            	steps {
-                		echo 'Deploying....'
-            	}
-        	}
-    	}
+    agent any
+	triggers{PullSCM(" * * * * * ")}
+	stages {
+        stage('Build') {
+            steps {
+               	echo 'Building..'
+            }
+       	}
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
