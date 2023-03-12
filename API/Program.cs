@@ -11,6 +11,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DBContext>(optionsBuilder => optionsBuilder.UseSqlite(
     "Data source=db.db"));
 
+Application.DependencyResolvement.DependencyResolverService.RegisterApplicationLayer(builder.Services);
+Infrastructure.DependencyResolvement.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
+
 
 var app = builder.Build();
 
