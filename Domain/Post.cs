@@ -6,5 +6,5 @@ public class Post
     public string title;
     public string content;
     public DateTime PostDateTime;
-    public User author;
+    public User PostAuthor;
 }
