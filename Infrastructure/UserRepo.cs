@@ -1,6 +1,8 @@
-﻿namespace Infrastructure;
+﻿using Application.Interfaces;
 
-public class UserRepo
+namespace Infrastructure;
+
+public class UserRepo: IUserRepo
 {
     
 }

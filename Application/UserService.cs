@@ -1,7 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain;
 using Domain.Services;
-using Infrastructure;
 
 namespace Application;
 
