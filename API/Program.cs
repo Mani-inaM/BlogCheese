@@ -14,7 +14,24 @@ builder.Services.AddDbContext<DBContext>(optionsBuilder => optionsBuilder.UseSql
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseCors(options => {
+        options.AllowAnyOrigin();
+        options.AllowAnyHeader();
+        options.AllowAnyMethod();
+    });
+    
+}
 
 
+app.UseHttpsRedirection();
 
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
 app.Run();
