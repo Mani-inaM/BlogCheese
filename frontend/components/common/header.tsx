@@ -2,26 +2,32 @@ import Logo from "@/components/icons/logo";
 import Link from "next/link";
 export default function Header() {
   return (
-    <nav className={"h-[80px] bg-primary/30 flex items-center text-secondary"}>
+    <nav className={"flex h-[80px] items-center bg-primary/30 text-secondary"}>
       <div className={"container flex items-center justify-between"}>
         <ul className={"flex gap-10 font-medium"}>
           <Link
             href={"/"}
-            className={"hover:text-black transition hover:underline"}
+            className={"transition hover:text-black hover:underline"}
           >
             Home
           </Link>
           <Link
             href={"/"}
-            className={"hover:text-black transition hover:underline"}
+            className={"transition hover:text-black hover:underline"}
           >
             About
           </Link>
           <Link
-            href={"/"}
-            className={"hover:text-black transition hover:underline"}
+            href={"/categories"}
+            className={"transition hover:text-black hover:underline"}
           >
             Categories
+          </Link>
+          <Link
+            href={"/faq"}
+            className={"transition hover:text-black hover:underline"}
+          >
+            FAQ
           </Link>
         </ul>
         <Logo />
