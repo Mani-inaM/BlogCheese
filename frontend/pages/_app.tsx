@@ -1,5 +1,6 @@
-import "@/styles/globals.css";
 import Layout from "@/components/common/layout";
+import "@/styles/globals.css";
+import { MantineProvider } from "@mantine/core";
 import { Noto_Sans } from "@next/font/google";
 import type { AppProps } from "next/app";
 
@@ -11,9 +12,11 @@ const NotoSans = Noto_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={NotoSans.className}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <MantineProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MantineProvider>
     </div>
   );
 }
