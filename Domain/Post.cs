@@ -2,9 +2,10 @@
 
 public class Post
 {
-    public int Id;
-    public string title;
-    public string content;
-    public DateTime PostDateTime;
-    public User PostAuthor;
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
+    public DateTime PostDateTime { get; set; }
+    public User PostAuthor { get; set; }
+    public int PostAuthorId { get; set; }
 }

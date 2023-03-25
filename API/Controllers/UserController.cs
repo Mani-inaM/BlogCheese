@@ -11,19 +11,39 @@ public class UserController: ControllerBase
 {
     private readonly IUserService _service;
 
+    public UserController(IUserService service)
+    {
+        _service = service;
+    }
+
 
     [HttpPost]
-    [Route("PostUser")]
-    public ActionResult<User> PostUser(User user)
+    [Route("Register")]
+    public ActionResult Register(RegisterUserDTO dto)
     {
 
         try
         {
-            return Ok(_service.CreateUser(user));
+            return Ok(_service.RegisterUser(dto));
         }
         catch (Exception e)
         {
             return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPut]
+    [Route("Login")]
+    public ActionResult Login(LoginUserDTO dto)
+    {
+        try
+        {
+            return Ok(_service.LoginUser(dto));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
         }
     }
 

@@ -13,20 +13,23 @@ public class DBContext: DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>()
-            .Property(p => p.Id)
+            .Property(user => user.Id)
             .ValueGeneratedOnAdd();
         modelBuilder.Entity<Post>()
-            .Property(f => f.Id)
+            .Property(post => post.Id)
             .ValueGeneratedOnAdd();
+        
         modelBuilder.Entity<User>()
-            .HasKey(c => new { ManFacId = c.Id });
-        modelBuilder.Entity<Post>()
-            .HasKey(c => new { ManFacId = c.Id });
+            .HasMany(u => u.Posts)
+            .WithOne(p => p.PostAuthor)
+            .HasForeignKey(p => p.PostAuthorId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .Ignore(u => u.Posts);
 
         modelBuilder.Entity<Post>()
-            .HasOne(r => r.PostAuthor)
-            .WithMany(p => p.Posts)
-            .HasForeignKey(r => r.Id);
+            .Ignore(p => p.PostAuthor);
     }
 
     public DbSet<Post> PostTable { get; set; }
