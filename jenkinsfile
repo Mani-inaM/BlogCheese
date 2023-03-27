@@ -4,17 +4,20 @@ pipeline {
 	stages {
         stage('Build') {
             steps {
-               	echo 'Building..'
+               	sh 'dotnet build'
             }
        	}
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'dotnet test'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                script {
+                    def composeFile = "docker-compose.yml"
+                    sh "docker-compose -f ${composeFile} up -d"
+                }
             }
         }
     }
