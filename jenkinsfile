@@ -12,12 +12,9 @@ pipeline {
                 echo 'dotnet test'
             }
         }
-        stage('Deploy') {
+        stage('Build Docker Images') {
             steps {
-                script {
-                    def composeFile = "docker-compose.yml"
-                    sh "docker-compose -f ${composeFile} up -d"
-                }
+                sh 'docker-compose build'
             }
         }
     }
