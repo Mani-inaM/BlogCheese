@@ -4,9 +4,9 @@ namespace Infrastructure;
 
 public class DbRepo: IDbRepo
 {
-    private readonly DBContext _context;
+    private readonly DatabaseContext _context;
 
-    public DbRepo(DBContext context)
+    public DbRepo(DatabaseContext context)
     {
         _context = context;
     }

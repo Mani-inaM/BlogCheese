@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<DBContext>(optionsBuilder => optionsBuilder.UseSqlite(
+builder.Services.AddDbContext<DatabaseContext>(optionsBuilder => optionsBuilder.UseSqlite(
     "Data source=db.db"));
 
 Application.DependencyResolvement.DependencyResolverService.RegisterApplicationLayer(builder.Services);

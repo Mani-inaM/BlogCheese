@@ -5,9 +5,9 @@ namespace Infrastructure;
 
 public class UserRepo: IUserRepo
 {
-    private readonly DBContext _context;
+    private readonly DatabaseContext _context;
 
-    public UserRepo(DBContext context)
+    public UserRepo(DatabaseContext context)
     {
         _context = context;
     }

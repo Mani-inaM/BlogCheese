@@ -9,9 +9,9 @@ namespace Infastructure;
 
 public class PostRepo: IPostRepo
 {
-    private DBContext _dbcontext;
+    private DatabaseContext _dbcontext;
 
-    public PostRepo(DBContext dbcontext)
+    public PostRepo(DatabaseContext dbcontext)
     {
        
         _dbcontext = dbcontext;
@@ -25,8 +25,8 @@ public class PostRepo: IPostRepo
     
     public Post CreatePost(Post post)
     {
-        var author = _dbcontext.UserTable.FirstOrDefault(author => author.Id == post.PostAuthorId) ??
-                     throw new KeyNotFoundException($"Can't create post as current user doesn't exist");
+        var author = _dbcontext.UserTable.First(author => author.Id == post.PostAuthorId) ??
+                     throw new KeyNotFoundException("Can't create post as current user doesn't exist");
 
         post.PostAuthor = author;
         var createdPost = _dbcontext.PostTable.Add(post).Entity;
@@ -64,6 +64,10 @@ public class PostRepo: IPostRepo
     {
         var usersPosts = _dbcontext.PostTable.Where(p => p.PostAuthorId == userId) ??
                          throw new KeyNotFoundException("No posts by user found");
+        if (usersPosts.ToList().Count == 0)
+        {
+            throw new KeyNotFoundException("No posts were found with the specified value.");
+        }
         return usersPosts.ToList();
     }
 

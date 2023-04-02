@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;
 
-public class DBContext: DbContext
+public class DatabaseContext: DbContext
 {
-    public DBContext(DbContextOptions<DBContext> opts) : base(opts)
+    public DatabaseContext(DbContextOptions<DatabaseContext> opts) : base(opts)
     {
             
     }
@@ -18,7 +18,7 @@ public class DBContext: DbContext
         modelBuilder.Entity<Post>()
             .Property(post => post.Id)
             .ValueGeneratedOnAdd();
-        
+
         modelBuilder.Entity<User>()
             .HasMany(u => u.Posts)
             .WithOne(p => p.PostAuthor)
@@ -30,6 +30,12 @@ public class DBContext: DbContext
 
         modelBuilder.Entity<Post>()
             .Ignore(p => p.PostAuthor);
+
+        #region DataSeed
+        modelBuilder.Entity<User>().HasData(
+            new User() { Id = -1, Hash = "hash", Salt = "salt", Posts = new List<Post>(), Username = "username" });
+        #endregion
+
     }
 
     public DbSet<Post> PostTable { get; set; }
