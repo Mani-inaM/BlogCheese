@@ -47,11 +47,11 @@ public class PostController: ControllerBase
 
     [HttpDelete]
     [Route("DeletePost/{postId}")]
-    public ActionResult DeletePost([FromRoute]int postId)
+    public ActionResult DeletePost([FromRoute]string postId)
     {
         try
         {
-            return Ok(_service.DeletePost(postId));
+            return Ok(_service.DeletePost(Int32.Parse(postId)));
         }
         catch (Exception e)
         {
@@ -61,11 +61,11 @@ public class PostController: ControllerBase
 
     [HttpGet]
     [Route("GetPost/{postId}")]
-    public ActionResult<Post> GetPostById([FromRoute] int postId)
+    public ActionResult<Post> GetPostById([FromRoute] string postId)
     {
         try
         {
-            return Ok(_service.GetPostById(postId));
+            return Ok(_service.GetPostById(Int32.Parse(postId)));
         }
         catch (Exception e)
         {
@@ -89,11 +89,11 @@ public class PostController: ControllerBase
 
     [HttpGet]
     [Route("GetUsersPosts/{userId}")]
-    public ActionResult<List<Post>> GetUsersPostsById([FromRoute] int userId)
+    public ActionResult<List<Post>> GetUsersPostsById([FromRoute] string userId)
     {
         try
         {
-            return Ok(_service.GetUsersPostsById(userId));
+            return Ok(_service.GetUsersPostsById(Int32.Parse(userId)));
         }
         catch (Exception e)
         {
