@@ -7,6 +7,7 @@ import Layout from "@/components/common/layout";
 import SearchTags from "@/components/common/search-tags";
 import Heading from "@/components/ui/heading";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export type Article = {
   content: string;
@@ -30,21 +31,22 @@ export default function HomePage() {
 
   return (
     <Layout>
-      <Hero articles={data} />
+      {/*<Hero articles={data} />*/}
       <section className={"container flex gap-20 py-20"}>
         <div className={"container flex gap-[100px]"}>
           <div className={"w-full max-w-[855px]"}>
-            <Heading label="recently posted" />
+            <Heading label="All posts" />
             <div className={"mt-[55px] flex flex-col gap-12"}>
               {data.map((article) => (
+                  <Link href={`/blog/${article.id}`} key={article.id}>
                 <ArticleCard
-                  key={article.id}
                   author={article.author}
                   dateAdded={article.postDateTime}
                   excerpt={article.content}
                   minutesToRead={5}
                   title={article.title}
                 />
+                  </Link>
               ))}
             </div>
           </div>
@@ -53,9 +55,9 @@ export default function HomePage() {
               <Advertisement />
             </div>
             <div className={"mb-[80px]"}>
-              <CategoriesStatistic />
+              <CategoriesStatistic  allPosts={data.length}/>
             </div>
-            <SearchTags />
+            {/*<SearchTags />*/}
           </div>
         </div>
       </section>
