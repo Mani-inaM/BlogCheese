@@ -55,7 +55,7 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      await fetch(`${url}/User/Login`, {
+      const res = await fetch(`${url}/User/Login`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -65,6 +65,7 @@ const LoginPage = () => {
       setValue(
         JSON.stringify({
           username,
+          // id: res.data.id,
         })
       );
       router.push("/");

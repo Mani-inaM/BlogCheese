@@ -53,6 +53,7 @@ export default function Header() {
           {loggedUser.username ? (
             <div className="flex gap-2">
               <span>{loggedUser.username}</span>
+              {/*<Link href={`/user/${loggedUser.id}`}>Dashboard</Link>*/}
               <button
                 onClick={() => {
                   setValue(
