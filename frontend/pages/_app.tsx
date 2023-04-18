@@ -13,7 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={NotoSans.className}>
       <MantineProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </MantineProvider>
     </div>
   );
