@@ -3,6 +3,7 @@ import Advertisement from "@/components/common/advertisement";
 import CategoriesStatistic from "@/components/common/categories-statistic";
 import ContactBanner from "@/components/common/contact-banner";
 import Hero from "@/components/common/hero";
+import Layout from "@/components/common/layout";
 import SearchTags from "@/components/common/search-tags";
 import Heading from "@/components/ui/heading";
 import { useEffect, useState } from "react";
@@ -23,13 +24,12 @@ export default function HomePage() {
     async function fetchPopularArticles() {
       const response = await fetch("http://localhost:5200/Post/GetAllPosts");
       setData(await response.json());
-      console.log(data);
     }
     fetchPopularArticles();
   }, []);
 
   return (
-    <>
+    <Layout>
       <Hero articles={data} />
       <section className={"container flex gap-20 py-20"}>
         <div className={"container flex gap-[100px]"}>
@@ -59,6 +59,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </Layout>
   );
 }
