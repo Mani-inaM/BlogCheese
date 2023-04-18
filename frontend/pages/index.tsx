@@ -30,7 +30,6 @@ export default function HomePage() {
 
   return (
     <Layout>
-
       <Hero articles={data} />
       <section className={"container flex gap-20 py-20"}>
         <div className={"container flex gap-[100px]"}>
