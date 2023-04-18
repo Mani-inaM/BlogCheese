@@ -100,7 +100,7 @@ const LoginPage = () => {
           onClick={handleLogin}
           fullWidth
           mt="xl"
-          className="bg-primary"
+          className="bg-primary/90"
           size="md"
         >
           Login
